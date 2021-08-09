@@ -1,97 +1,66 @@
-// перечилсяем размеры 
-const small = function small(){
-    this.price = 50,
-    this.calories = 20
-};
-const medium = function medium() {
-    this.price = 75,
-    this.calories = 30
-};
-const large = function large(){
-    this.price = 100,
-    this.calories = 40
-};
-// перечисляем добавки
-const cheese = function cheese(){
-    this.price + 10;
-    this.calories + 20
-};
-const addSalad = function salad(){
-    this.price + 20;
-    this.calories + 5
-};
-const addPotato = function potato(){
-    this.price + 15;
-    this.calories + 10
-};
-const addSpicePrice = function spice(){
-    this.price + 15;
-    this.calories + 0
-};
-const addMayoPrice = function mayoPrice(){
-    this.price + 20;
-    this.calories + 5
-};
-
-
-
-function calculateBill (price, modifies){
+function Burger (info){
     
-    this.price = function price(){
-        
-        if(this.size =='small'){
+    this.price = info.price;
+    this.calories = info.calories;
 
-        };
-        if(this.size =='medium'){
-
-        };
-        if(this.size =='large'){
-
-        };
-    };
-    this.modifies = function modifies(){
-        
-        if(this.modifies =='cheese'){
-
-        };
-        if(this.modifies =='salad'){
-
-        };
-        if(this.modifies =='potato'){
-
-        };
-        if(this.modifies =='spice'){
-
-        };
-        if(this.modifies =='mayonez'){
-
-        };
-        
-    };
-    
-}
-
-function Hamburger(size, modifies) {
-
-    this.size = size(s){
-        if(s =='small'){
-            let price = 50;
-            let calories = 20;
-        };
-        if(s =='medium'){
-            let price = 75;
-            let calories = 30
-        };
-        if(s =='large'){
-            let price = 75;
-            let calories = 40
-        };
+    this.getPrice = function (){
+        return this.price;
     }
-    
-                
-    
+    this.getCalories = function() {
+        return this.calories
+    }
+
+   
+    this.addModifier = function(modifier) {
+        this.price += modifier.price;
+        this.calories += modifier.calories;
+        return this
+    }
+
 }
 
-let hamburger = new Hamburger('small');
+const cheese = {
+    price: 10,
+    calories: 20
+};
+const salad = {
+    price: 20,
+    calories: 5
+};
+const potato = {
+    price: 15,
+    calories: 10
+};
+const spice = {
+    price: 15,
+    calories: 0
+};
+const mayo = {
+    price: 20,
+    calories: 5
+};
 
-console.log(hamburger())
+const sizeSmall = {
+    type: 'small',
+    price: 50,
+    calories: 20
+};
+const sizeMedium = {
+    type: 'medium',
+    price: 75,
+    calories: 30
+};
+
+const sizeLarge = {
+    type: 'large',
+    price: 100,
+    calories: 40
+};
+
+
+let burgerSmall = new Burger(sizeSmall);
+let burgerMedium = new Burger(sizeMedium);
+let burgerLarge = new Burger(sizeLarge);
+
+console.log(burgerLarge.addModifier(spice)) //price: 115, calories: 40
+console.log(burgerSmall.addModifier(salad).addModifier(mayo)) //price: 90, calories: 30
